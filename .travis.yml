@@ -5,7 +5,7 @@ matrix:
     os: osx
     language: generic
     env:
-      - PYTHON_VERSION=3.5
+      - PYTHON_VERSION=35
 before_install:
   - source ./setup_python.sh $PYTHON_VERSION 'osx'
 install:
