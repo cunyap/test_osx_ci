@@ -1,17 +1,6 @@
 language: python
 matrix:
   include:
-  - name: "Python 3.5 on macOS"
-    os: osx
-    osx_image: xcode8
-    language: generic       # 'language: python' is an error on Travis CI macOS
-    env:
-      - PYTHON_VERSION=3.5
-  - name: "Python 3.6 on macOS"
-    os: osx
-    language: generic
-    env:
-      - PYTHON_VERSION=3.6
   - name: "Python 3.7 on macOS"
     os: osx
     language: generic
