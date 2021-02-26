@@ -10,26 +10,26 @@ if [[ $2 -ne 'osx' ]]; then
 fi
 
 # get previous directory
-OLD="$(pwd)"
+# OLD="$(pwd)"
 
 # get directory of this script
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-cd $DIR
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+#cd $DIR
 
 # setup MacPython version management
-source osx_utils.sh
+#source osx_utils.sh
 
 # get MacPython version
-MPV="$(fill_pyver $1)"
+#MPV="$(fill_pyver $1)"
 
 # create download directory
-DLD=${DIR}/dl_cache
-mkdir -p $DLD
+#DLD=${DIR}/dl_cache
+#mkdir -p $DLD
 
 # download MacPython
-PKG="python-${MPV}-macosx10.6.pkg"
-echo PKG
-curl https://www.python.org/ftp/python/${MPV}/${PKG} > ${DLD}/${PKG}
+#PKG="python-${MPV}-macosx10.6.pkg"
+#echo PKG
+#curl https://www.python.org/ftp/python/${MPV}/${PKG} > ${DLD}/${PKG}
 
 brew install swig;
 curl -LO https://raw.githubusercontent.com/GiovanniBussi/macports-ci/master/macports-ci;
@@ -48,4 +48,4 @@ pyinstaller --version;
 echo "DONE _________________________________"
 
 # go back
-cd $OLD
+#cd $OLD
