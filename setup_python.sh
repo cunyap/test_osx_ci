@@ -28,27 +28,24 @@ mkdir -p $DLD
 
 # download MacPython
 PKG="python-${MPV}-macosx10.6.pkg"
+echo PKG
 curl https://www.python.org/ftp/python/${MPV}/${PKG} > ${DLD}/${PKG}
 
-# install MacPython
-sudo installer -pkg ${DLD}/${PKG} -target /
+brew update
+brew install openssl readline
+brew outdated pyenv || brew upgrade pyenv
+brew install pyenv-virtualenv
+echo "WE INSTALL PYTHON"
+echo python-${MPV}
+echo "________________________________"
+pyenv install python-${MPV}
 
-# install latest version of pip
-curl https://bootstrap.pypa.io/get-pip.py -o ${DLD}/get-pip.py
-python ${DLD}/get-pip.py
-
-# install virtualenv
-python3 -m pip install virtualenv
-
-# create virtualenv
-PP="/Library/Frameworks/Python.framework/Versions/${MPV::3}/bin/python${MPV::3}"
-python3 -m virtualenv --no-site-packages -p $PP .env
-source .env/bin/activate
-
-# install ca certificates
-# (resolves [SSL: CERTIFICATE_VERIFY_FAILED])
-pip3 install certifi
-/Applications/Python\ ${MPV::3}/Install\ Certificates.command
+export PYENV_VERSION=python-${MPV}
+export PATH="/Users/travis/.pyenv/shims:${PATH}"
+pyenv-virtualenv venv
+source venv/bin/activate
+# A manual check that the correct version of Python is running.
+python --version
 
 # go back
 cd $OLD
