@@ -1,15 +1,15 @@
 language: python
 matrix:
   include:
-  - name: "Python 3.7 on macOS"
+  - name: "Python 3.5 on macOS"
     os: osx
     language: generic
     env:
-      - PYTHON_VERSION=3.7
+      - PYTHON_VERSION=3.5
 before_install:
   - source ./setup_python.sh $PYTHON_VERSION 'osx'
 install:
-- bash $TRAVIS_BUILD_DIR/test_osx_ci/build.sh $TRAVIS_OS_NAME $PYTHON_VERSION
+- bash $TRAVIS_BUILD_DIR/build.sh $TRAVIS_OS_NAME $PYTHON_VERSION
 services:
 - xvfb
 deploy:
