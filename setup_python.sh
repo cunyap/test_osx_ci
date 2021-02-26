@@ -31,21 +31,21 @@ PKG="python-${MPV}-macosx10.6.pkg"
 echo PKG
 curl https://www.python.org/ftp/python/${MPV}/${PKG} > ${DLD}/${PKG}
 
-brew update
-brew install openssl readline
-brew outdated pyenv || brew upgrade pyenv
-brew install pyenv-virtualenv
-echo "WE INSTALL PYTHON"
-echo python-${MPV}
-echo "________________________________"
-pyenv install python-${MPV}
+brew install swig;
+curl -LO https://raw.githubusercontent.com/GiovanniBussi/macports-ci/master/macports-ci;
+source ./macports-ci install;
 
-export PYENV_VERSION=python-${MPV}
-export PATH="/Users/travis/.pyenv/shims:${PATH}"
-pyenv-virtualenv venv
-source venv/bin/activate
-# A manual check that the correct version of Python is running.
-python --version
+yes | sudo port install python$1;
+yes | sudo port install py$1-pip;
+sudo port select --set python3 python$1;
+sudo port select --set pip pip$1;
+pip install pyinstaller --user;
+export PATH=$PATH:/Users/travis/Library/Python/$1/bin;
+
+python3 --version;
+pip --version;
+pyinstaller --version;
+echo "DONE _________________________________"
 
 # go back
 cd $OLD
