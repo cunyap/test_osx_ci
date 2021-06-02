@@ -23,7 +23,8 @@ if [[ $1 == "linux" ]];
 else
     cd /Users/travis/build/cunyap/test_osx_ci/
     pip3 install PyQt5>=5.10.1
-    pip3 install .
+    python --version
+    # pip3 install .
 
     if [[ $2 == 3.5 ]];
         then
