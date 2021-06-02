@@ -10,7 +10,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
 
-    case "${TOXENV}" in
+    case "${PYTHON_VERSION}" in
         py26)
             pyenv install 2.6.9
             pyenv global 2.6.9
@@ -43,4 +43,4 @@ else
     pip install virtualenv
 fi
 
-pip install tox
+pip install PyInstaller
