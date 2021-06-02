@@ -6,6 +6,7 @@ set -x
 if [[ "$(uname -s)" == 'Darwin' ]]; then
 
     brew uninstall --ignore-dependencies openssl
+    brew install pyenv-virtualenv
     # Install openssl with homebrew
     # brew install openssl 
     # brew link --overwrite --dry-run openssl 
@@ -44,8 +45,16 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
             ;;
     esac
     pyenv rehash
+    export PYENV_VERSION=3.5.2
+    export PATH="/Users/travis/.pyenv/shims:${PATH}"
+    pyenv-virtualenv venv
+    source venv/bin/activate
+    # A manual check that the correct version of Python is running.
+    python --version
     python -V
     which python
+    which pip
+    which pip3
     pip3 install -U setuptools
     pip3 install --user virtualenv
 else
