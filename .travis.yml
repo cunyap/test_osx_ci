@@ -20,7 +20,7 @@ matrix:
           # update: true
           packages: pyenv
       before_install:
-        - pyenv PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.5.0
+        - env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.5.0
         - pyenv virtualenv 3.5.0 test
         - pyenv activate test
         - pyenv rehash
