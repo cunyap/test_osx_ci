@@ -1,3 +1,28 @@
+ - stage: test
+      os: osx
+      language: sh
+      env:
+        - TOXENV=py3
+        - HOMEBREW_NO_INSTALL_CLEANUP=1
+        - HOMEBREW_NO_ANALYTICS=1
+      before_cache:
+        # - brew cleanup
+        - rm -f "$HOME/Library/Caches/pip/log/debug.log"
+      cache:
+        directories:
+          # - "$HOME/Library/Caches/Homebrew"
+          - "$HOME/Library/Caches/pip"
+      addons:
+        homebrew:
+          # update: true
+          packages: python3
+      before_install:
+        - python3 -m pip install --upgrade virtualenv
+        - virtualenv -p python3 --system-site-packages "$HOME/venv"
+        - source "$HOME/venv/bin/activate"
+      install: pip install --upgrade <your-packages>
+      script: <your-script>
+
 language: python
 matrix:  
   include:
@@ -6,10 +31,27 @@ matrix:
       language: generic
       python: "3.5"
       env:
+        - TOXENV=py3
+        - HOMEBREW_NO_INSTALL_CLEANUP=1
+        - HOMEBREW_NO_ANALYTICS=1
         - PYTHON_VERSION=3.5
+      before_cache:
+        - rm -f "$HOME/Library/Caches/pip/log/debug.log"
       cache:
         - directories:
           - $HOME/Library/Caches/pip
+      addons:
+        homebrew:
+          # update: true
+          packages: pyenv
+      before_install:
+        - pyenv PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.5.0
+        - pyenv virtualenv 3.5.0 test
+        - pyenv activate test
+        - pyenv rehash
+        #- python3 -m pip install --upgrade virtualenv
+        #- virtualenv -p python3 --system-site-packages "$HOME/venv"
+        #- source "$HOME/venv/bin/activate"
 install:
 - bash $TRAVIS_BUILD_DIR/build.sh $TRAVIS_OS_NAME $PYTHON_VERSION
 services:
