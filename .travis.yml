@@ -19,6 +19,7 @@ install:
   - ./install.sh 
 script:
   - ./script.sh
+  
 #install:
 #- bash $TRAVIS_BUILD_DIR/build.sh $TRAVIS_OS_NAME $PYTHON_VERSION
 services:
