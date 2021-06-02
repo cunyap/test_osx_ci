@@ -5,10 +5,11 @@ set -x
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
 
-	# Install openssl with homebrew
-	brew install openssl 
-	brew link --overwrite --dry-run openssl 
-	brew link --force openssl
+    brew uninstall --ignore-dependencies openssl
+    # Install openssl with homebrew
+    # brew install openssl 
+    # brew link --overwrite --dry-run openssl 
+    # brew link --force openssl
 	
     # install pyenv
     git clone --depth 1 https://github.com/yyuu/pyenv.git ~/.pyenv
@@ -50,3 +51,6 @@ else
 fi
 
 pip install PyInstaller
+brew install openssl 
+brew link --overwrite --dry-run openssl 
+brew link --force openssl
