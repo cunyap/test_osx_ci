@@ -44,13 +44,15 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
             ;;
     esac
     pyenv rehash
-    pip install -U setuptools
-    pip install --user virtualenv
+    python -V
+    which python
+    pip3 install -U setuptools
+    pip3 install --user virtualenv
 else
-    pip install virtualenv
+    pip3 install virtualenv
 fi
 
-pip install PyInstaller
+pip3 install PyInstaller
 brew install openssl 
 brew link --overwrite --dry-run openssl 
 brew link --force openssl
