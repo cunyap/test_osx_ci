@@ -12,4 +12,4 @@ matrix:
       #script: python3 -m pytest
       #after_success: python 3 -m codecov
       install:
-        - bash build.sh
+        - bash build.sh osx 3.6.5
